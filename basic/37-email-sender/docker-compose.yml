@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    ports:
+      - "7070:7070"
+    environment:
+      - SMTP_HOST=mailpit
+      - SMTP_PORT=1025
+      - SMTP_USER=
+      - SMTP_PASS=
+    depends_on:
+      - mailpit
+
+  mailpit:
+    image: axllent/mailpit
+    ports:
+      - "1025:1025" # SMTP port
+      - "8025:8025" # Web UI

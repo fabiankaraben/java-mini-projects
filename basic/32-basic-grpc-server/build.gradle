@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.google.protobuf' version '0.9.4'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'com.example.grpc.server.GrpcServer'
+}
+
+def grpcVersion = '1.68.1' // Using a recent stable version
+def protobufVersion = '3.25.1'
+def protocVersion = protobufVersion
+
+dependencies {
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    implementation "io.grpc:grpc-netty-shaded:${grpcVersion}" // For the server
+    implementation "io.grpc:grpc-services:${grpcVersion}" // For server reflection
+    compileOnly "org.apache.tomcat:annotations-api:6.0.53" // necessary for Java 9+
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation "io.grpc:grpc-testing:${grpcVersion}"
+    testImplementation "io.grpc:grpc-inprocess:${grpcVersion}"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protocVersion}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

@@ -1,0 +1,11 @@
+appName: "My Awesome Service"
+port: 8080
+database:
+  host: "localhost"
+  port: 5432
+  username: "admin"
+  password: "securepassword123"
+features:
+  - "rate-limiting"
+  - "authentication"
+  - "logging"

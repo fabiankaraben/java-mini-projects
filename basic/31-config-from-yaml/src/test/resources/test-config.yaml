@@ -1,0 +1,10 @@
+appName: "Test Service"
+port: 9090
+database:
+  host: "db.test.local"
+  port: 3306
+  username: "testuser"
+  password: "testpassword"
+features:
+  - "feature1"
+  - "feature2"

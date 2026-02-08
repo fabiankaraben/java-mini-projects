@@ -1,0 +1,5 @@
+Hello, this is a sample file for download!
+It contains some text to verify the content.
+Line 3.
+Line 4.
+End of file.

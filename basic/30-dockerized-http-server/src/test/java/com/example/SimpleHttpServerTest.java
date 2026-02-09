@@ -1,6 +1,5 @@
 package com.example;
 
-import io.restassured.RestAssured;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;

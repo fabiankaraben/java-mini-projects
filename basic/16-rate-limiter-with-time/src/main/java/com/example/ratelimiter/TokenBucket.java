@@ -1,6 +1,5 @@
 package com.example.ratelimiter;
 
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class TokenBucket {

@@ -4,7 +4,6 @@ import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.util.logging.Logger;
-import java.util.logging.Level;
 
 public class SimpleLoggerMiddleware extends Filter {
     private static final Logger logger = Logger.getLogger(SimpleLoggerMiddleware.class.getName());

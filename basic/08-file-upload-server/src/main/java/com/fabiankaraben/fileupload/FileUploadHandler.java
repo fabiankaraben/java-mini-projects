@@ -66,7 +66,7 @@ public class FileUploadHandler implements HttpHandler {
             // Convert start of body to string to search for headers (limited length to avoid memory issues with huge files)
             // But here we already read everything into memory which is not ideal for large files, but acceptable for this mini-project.
             
-            String bodyString = new String(bodyBytes, StandardCharsets.ISO_8859_1); // ISO-8859-1 preserves byte values 1-to-1
+            // String bodyString = new String(bodyBytes, StandardCharsets.ISO_8859_1); // ISO-8859-1 preserves byte values 1-to-1
             String boundaryMarker = "--" + boundary;
             
             // Split by boundary

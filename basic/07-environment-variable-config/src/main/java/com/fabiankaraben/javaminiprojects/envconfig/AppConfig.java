@@ -1,6 +1,5 @@
 package com.fabiankaraben.javaminiprojects.envconfig;
 
-import java.util.Optional;
 
 public class AppConfig {
 

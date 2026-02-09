@@ -34,7 +34,7 @@ public class RSSService {
     private FeedItem mapToFeedItem(SyndEntry entry) {
         return new FeedItem(
                 entry.getTitle(),
-                entry.Link(),
+                entry.getLink(),
                 entry.getPublishedDate(),
                 entry.getDescription() != null ? entry.getDescription().getValue() : null
         );

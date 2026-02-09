@@ -4,7 +4,6 @@ import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
 import org.apache.hc.client5.http.entity.mime.FileBody;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpEntity;
@@ -28,7 +27,6 @@ class FileUploadIntegrationTest {
 
     private FileUploadServer server;
     private static final String TEST_UPLOAD_DIR = "uploads";
-    private static final String TEST_FILE_NAME = "test-file.txt";
     private static final String TEST_FILE_CONTENT = "This is a test file content for upload.";
 
     @BeforeEach
@@ -74,9 +72,8 @@ class FileUploadIntegrationTest {
             HttpEntity multipart = builder.build();
             uploadFile.setEntity(multipart);
             
-            try (CloseableHttpResponse response = httpClient.execute(uploadFile)) {
-                assertEquals(200, response.getCode());
-            }
+            int code = httpClient.execute(uploadFile, response -> response.getCode());
+            assertEquals(200, code);
         }
         
         // Verify file exists in uploads directory

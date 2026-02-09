@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: tracing-with-jaeger
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{trace_id:-},%X{span_id:-}]"
+
+otel:
+  exporter:
+    otlp:
+      endpoint: http://localhost:4317 # Default to local Jaeger OTLP gRPC port

@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/test"
+  },
+  "response": {
+    "status": 200,
+    "body": "Hello from Mock Backend via Gateway!",
+    "headers": {
+      "Content-Type": "text/plain"
+    }
+  }
+}

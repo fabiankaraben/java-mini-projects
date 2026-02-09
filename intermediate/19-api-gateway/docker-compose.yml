@@ -1,0 +1,26 @@
+services:
+  redis:
+    image: redis:7.2-alpine
+    ports:
+      - "6379:6379"
+
+  api-gateway:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+      - SPRING_CLOUD_GATEWAY_ROUTES_0_URI=http://backend:8080
+    depends_on:
+      - redis
+      - backend
+
+  backend:
+    image: wiremock/wiremock:3.3.1
+    command: ["--verbose", "--global-response-templating"]
+    ports:
+      - "8081:8080" # Map container 8080 to host 8081 for direct access/debugging if needed
+    volumes:
+      - ./wiremock:/home/wiremock
+

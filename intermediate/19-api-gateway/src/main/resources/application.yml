@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: api-gateway
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cloud:
+    gateway:
+      routes:
+        - id: backend-service
+          uri: http://localhost:8081 # Mock backend
+          predicates:
+            - Path=/api/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1 # 1 request per second
+                redis-rate-limiter.burstCapacity: 2 # max 2 requests burst
+                key-resolver: "#{@userKeyResolver}"

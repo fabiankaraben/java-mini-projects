@@ -24,7 +24,8 @@ public class CsvController {
             return ResponseEntity.badRequest().body(Map.of("message", "Please upload a CSV file!"));
         }
 
-        if (!"text/csv".equals(file.getContentType()) && !file.getOriginalFilename().endsWith(".csv")) {
+        String filename = file.getOriginalFilename();
+        if (!"text/csv".equals(file.getContentType()) && (filename == null || !filename.endsWith(".csv"))) {
              return ResponseEntity.badRequest().body(Map.of("message", "Invalid file type. Please upload a CSV file."));
         }
 

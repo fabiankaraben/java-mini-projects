@@ -23,6 +23,7 @@ public class UserControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
+    @SuppressWarnings("null")
     public void whenValidUser_thenReturns200() throws Exception {
         UserDto user = new UserDto();
         user.setUsername("john_doe");

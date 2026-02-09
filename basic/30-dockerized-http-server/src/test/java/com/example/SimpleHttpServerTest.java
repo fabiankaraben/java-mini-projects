@@ -16,6 +16,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class SimpleHttpServerTest {
 
     @Container
+    @SuppressWarnings("resource")
     public static GenericContainer<?> server = new GenericContainer<>(
             new ImageFromDockerfile()
                     .withFileFromPath(".", Paths.get("."))

@@ -23,6 +23,7 @@ class CsvControllerIntegrationTest {
     private MockMvc mockMvc;
 
     @Test
+    @SuppressWarnings({"null", "ConstantConditions"})
     void uploadCsv_ShouldReturnJson_WhenFileIsValid() throws Exception {
         String csvContent = "product,price,quantity\nLaptop,1000,5\nMouse,20,50";
         MockMultipartFile file = new MockMultipartFile(
@@ -42,6 +43,7 @@ class CsvControllerIntegrationTest {
     }
 
     @Test
+    @SuppressWarnings({"null", "ConstantConditions"})
     void uploadCsv_ShouldReturnBadRequest_WhenFileIsEmpty() throws Exception {
         MockMultipartFile file = new MockMultipartFile(
                 "file",
@@ -56,6 +58,7 @@ class CsvControllerIntegrationTest {
     }
     
     @Test
+    @SuppressWarnings({"null", "ConstantConditions"})
     void uploadCsv_ShouldReturnBadRequest_WhenNotCsv() throws Exception {
         MockMultipartFile file = new MockMultipartFile(
                 "file",

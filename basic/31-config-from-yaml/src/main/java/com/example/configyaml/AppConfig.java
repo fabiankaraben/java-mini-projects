@@ -1,7 +1,6 @@
 package com.example.configyaml;
 
 import java.util.List;
-import java.util.Map;
 
 public class AppConfig {
     private String appName;

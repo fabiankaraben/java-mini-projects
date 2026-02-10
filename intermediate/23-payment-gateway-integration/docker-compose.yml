@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - STRIPE_API_KEY=${STRIPE_API_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - STRIPE_API_BASE=http://stripe-mock:12111
+    depends_on:
+      - stripe-mock
+
+  stripe-mock:
+    image: stripemock/stripe-mock:latest
+    ports:
+      - "12111:12111"
+      - "12112:12112"

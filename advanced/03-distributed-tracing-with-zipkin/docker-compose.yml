@@ -1,0 +1,28 @@
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+
+  service-a:
+    build: service-a
+    container_name: service-a
+    ports:
+      - "8081:8081"
+    environment:
+      - SERVICE_B_URL=http://service-b:8082
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+    depends_on:
+      - zipkin
+      - service-b
+
+  service-b:
+    build: service-b
+    container_name: service-b
+    ports:
+      - "8082:8082"
+    environment:
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
+    depends_on:
+      - zipkin

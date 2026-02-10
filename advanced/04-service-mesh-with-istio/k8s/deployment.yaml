@@ -1,0 +1,116 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: provider-service
+  labels:
+    app: provider-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: provider-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: provider-service
+        version: v1
+    spec:
+      containers:
+      - name: provider-service
+        image: provider-service:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: provider-service
+  labels:
+    app: provider-service
+    service: provider-service
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: provider-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer-service
+  labels:
+    app: consumer-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consumer-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: consumer-service
+        version: v1
+    spec:
+      containers:
+      - name: consumer-service
+        image: consumer-service:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PROVIDER_URL
+          value: "http://provider-service:8080"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: consumer-service
+  labels:
+    app: consumer-service
+    service: consumer-service
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: consumer-service
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: consumer-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: consumer-service
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - consumer-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /consume
+    route:
+    - destination:
+        host: consumer-service
+        port:
+          number: 8080

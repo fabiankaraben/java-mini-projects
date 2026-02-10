@@ -1,0 +1,15 @@
+plugins {
+    id 'au.com.dius.pact'
+}
+
+dependencies {
+    testImplementation 'au.com.dius.pact.provider:junit5spring:4.6.14'
+}
+
+pact {
+    serviceProviders {
+        'provider-service' {
+            providerVersion = { '1.0.0' }
+        }
+    }
+}

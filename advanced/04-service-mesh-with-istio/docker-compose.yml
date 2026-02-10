@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  provider-service:
+    build:
+      context: ./provider-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    environment:
+      - SERVER_PORT=8080
+    networks:
+      - mesh-network
+
+  consumer-service:
+    build:
+      context: ./consumer-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_PORT=8080
+      - PROVIDER_URL=http://provider-service:8080
+    depends_on:
+      - provider-service
+    networks:
+      - mesh-network
+
+networks:
+  mesh-network:
+    driver: bridge

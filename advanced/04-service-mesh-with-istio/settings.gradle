@@ -1,0 +1,3 @@
+rootProject.name = 'service-mesh-istio'
+include 'consumer-service'
+include 'provider-service'

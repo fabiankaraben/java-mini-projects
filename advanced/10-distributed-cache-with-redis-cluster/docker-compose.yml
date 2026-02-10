@@ -1,0 +1,23 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis-cluster
+    environment:
+      - SPRING_DATA_REDIS_CLUSTER_NODES=redis-cluster:7010,redis-cluster:7011,redis-cluster:7012,redis-cluster:7013,redis-cluster:7014,redis-cluster:7015
+
+  redis-cluster:
+    image: grokzen/redis-cluster:7.0.10
+    ports:
+      - "7010:7010"
+      - "7011:7011"
+      - "7012:7012"
+      - "7013:7013"
+      - "7014:7014"
+      - "7015:7015"
+    environment:
+      - IP=0.0.0.0
+      - INITIAL_PORT=7010
+

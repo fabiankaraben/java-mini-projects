@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: redis-cluster-app
+  data:
+    redis:
+      cluster:
+        nodes:
+          - localhost:7010
+          - localhost:7011
+          - localhost:7012
+          - localhost:7013
+          - localhost:7014
+          - localhost:7015
+      # Lettuce is the default client

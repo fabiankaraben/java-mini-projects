@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.videostreaming.VideoStreamingServerApplicationTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-02-10T19:02:39.972Z" hostname="Fabians-MacBook-Air.local" time="1.238">
+  <properties/>
+  <testcase name="shouldServeHlsManifest()" classname="com.example.videostreaming.VideoStreamingServerApplicationTests" time="0.417"/>
+  <testcase name="contextLoads()" classname="com.example.videostreaming.VideoStreamingServerApplicationTests" time="0.001"/>
+  <system-out><![CDATA[16:02:40.045 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.videostreaming.VideoStreamingServerApplicationTests]: VideoStreamingServerApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:02:40.114 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.videostreaming.VideoStreamingServerApplication for test class com.example.videostreaming.VideoStreamingServerApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.1)
+
+2026-02-10T16:02:40.313-03:00  INFO 35938 --- [    Test worker] e.v.VideoStreamingServerApplicationTests : Starting VideoStreamingServerApplicationTests using Java 25.0.2 with PID 35938 (started by fabian in /Users/fabian/Documents/CodeProjects/github.com/fabiankaraben/java-mini-projects/advanced/06-video-streaming-server)
+2026-02-10T16:02:40.314-03:00  INFO 35938 --- [    Test worker] e.v.VideoStreamingServerApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2026-02-10T16:02:40.769-03:00  INFO 35938 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-02-10T16:02:40.769-03:00  INFO 35938 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-02-10T16:02:40.770-03:00  INFO 35938 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-02-10T16:02:40.786-03:00  INFO 35938 --- [    Test worker] e.v.VideoStreamingServerApplicationTests : Started VideoStreamingServerApplicationTests in 0.615 seconds (process running for 1.132)
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/fabian/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.15.11/a38b16385e867f59a641330f0362ebe742788ed8/byte-buddy-agent-1.15.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

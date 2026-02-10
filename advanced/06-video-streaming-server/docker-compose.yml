@@ -1,0 +1,10 @@
+services:
+  video-streaming-server:
+    build: .
+    container_name: video-streaming-server
+    ports:
+      - "8080:8080"
+      - "1935:1935"
+    volumes:
+      - ./hls_data:/app/hls
+    restart: unless-stopped

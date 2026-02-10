@@ -1,0 +1,15 @@
+services:
+  reverse-proxy:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - APP_UPSTREAM_SERVICE_URL=http://upstream-service:80
+      - APP_UPSTREAM_ECHO_URL=https://postman-echo.com
+    depends_on:
+      - upstream-service
+
+  upstream-service:
+    image: traefik/whoami
+    ports:
+      - "8081:80"

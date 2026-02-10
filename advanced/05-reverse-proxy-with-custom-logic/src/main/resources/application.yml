@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: reverse-proxy-service
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedHeaders: "*"
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    com.fabiankaraben.reverseproxy: DEBUG
+
+app:
+  upstream:
+    service-url: http://localhost:8081
+    echo-url: https://postman-echo.com

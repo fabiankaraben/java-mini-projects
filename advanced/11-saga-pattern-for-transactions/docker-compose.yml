@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  axon-server:
+    image: axoniq/axonserver:2024.0.0
+    ports:
+      - "8024:8024"
+      - "8124:8124"
+    volumes:
+      - axon-data:/data
+      - axon-events:/eventdata
+      - axon-config:/config
+    networks:
+      - saga-network
+
+  saga-app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - axon-server
+    environment:
+      - AXON_AXONSERVER_SERVERS=axon-server
+    networks:
+      - saga-network
+
+volumes:
+  axon-data:
+  axon-events:
+  axon-config:
+
+networks:
+  saga-network:
+    driver: bridge

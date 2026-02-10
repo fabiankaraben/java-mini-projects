@@ -1,0 +1,14 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+bin/
+.settings/
+.classpath
+.project
+.vscode/
+*.class
+*.log
+.DS_Store

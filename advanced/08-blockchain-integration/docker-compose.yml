@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - ETHEREUM_NODE_URL=http://ganache:8545
+    depends_on:
+      - ganache
+
+  ganache:
+    image: trufflesuite/ganache:latest
+    ports:
+      - "8545:8545"
+    command: ["--wallet.totalAccounts", "10", "--wallet.defaultBalance", "100"]

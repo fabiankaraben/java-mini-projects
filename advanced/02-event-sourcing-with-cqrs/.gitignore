@@ -1,0 +1,15 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+bin/
+out/
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+.classpath
+.project
+.settings/

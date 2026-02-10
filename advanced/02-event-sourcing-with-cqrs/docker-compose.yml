@@ -1,0 +1,26 @@
+services:
+  axon-server:
+    image: axoniq/axonserver:latest
+    hostname: axon-server
+    container_name: axon-server
+    ports:
+      - "8024:8024"
+      - "8124:8124"
+    networks:
+      - axon-network
+
+  app:
+    build: .
+    container_name: event-sourcing-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - axon-server
+    environment:
+      - AXON_AXONSERVER_SERVERS=axon-server
+    networks:
+      - axon-network
+
+networks:
+  axon-network:
+    driver: bridge

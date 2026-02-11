@@ -706,3 +706,207 @@ Java mini-projects, each one a new challenge.
     📦 **Dependency Manager**: Gradle  
     🧪 **Testing**: Integration tests using **WireMock** to simulate the LLM provider API (OpenAI, etc.) and verify prompt construction.  
     🔹 [Project directory](advanced/16-ai-chatbot-backend)
+
+17. **Dynamic Plugin System**  
+    🔹 This is a backend in Java using **PF4J** or custom class loading, allowing runtime plugin loading/unloading.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests loading a dummy plugin jar and executing its extension point.  
+    🔹 [Project directory](advanced/17-dynamic-plugin-system)
+
+18. **Peer-to-Peer File Sharing**  
+    🔹 This is a backend in Java using **JXTA** or raw UDP/TCP with NAT traversal, for decentralized file sharing.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests spawning multiple "peer" instances locally and transferring a file between them.  
+    🔹 [Project directory](advanced/18-peer-to-peer-file-sharing)
+
+19. **Distributed Task Scheduler**  
+    🔹 This is a backend in Java using **Quartz** with JDBC job store or **db-scheduler**, coordinating tasks across nodes.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests with multiple instances connected to the same DB, verifying a task runs only once.  
+    🔹 [Project directory](advanced/19-distributed-task-scheduler)
+
+20. **Real-Time Collaboration Tool**  
+    🔹 This is a backend in Java using **Operational Transformation (OT)** or **CRDTs** (e.g., Yjs port) over WebSockets.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Simulation tests applying concurrent edits from multiple clients and verifying eventual consistency.  
+    🔹 [Project directory](advanced/20-real-time-collaboration-tool)
+
+21. **Custom Database Engine**  
+    🔹 This is a backend in Java, implementing a simple append-only log or B-Tree based storage engine.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Unit tests for the storage format. Integration tests performing heavy read/write operations and verifying persistence.  
+    🔹 [Project directory](advanced/21-custom-database-engine)
+
+22. **IoT Device Gateway**  
+    🔹 This is a backend in Java using **Eclipse Milo** (OPC UA) or **MQTT** (HiveMQ client), bridging device data to cloud.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests using **Testcontainers** (Mosquitto) to simulate device messages and verify processing.  
+    🔹 [Project directory](advanced/22-iot-device-gateway)
+
+23. **Rule Engine Service**  
+    🔹 This is a backend in Java using **Drools**, executing complex business rules dynamically.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Unit tests defining DRL files and asserting that facts match the expected rule outcomes.  
+    🔹 [Project directory](advanced/23-rule-engine-service)
+
+24. **Custom Service Discovery**  
+    🔹 This is a backend in Java using **Gossip Protocol** or a central registry with heartbeats (like Eureka basics).  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests starting multiple service nodes and verifying the registry detects failures/joins.  
+    🔹 [Project directory](advanced/24-custom-service-discovery)
+
+25. **Multi-Tenant SaaS Platform**  
+    🔹 This is a backend in Java using **Hibernate** with schema-per-tenant or discriminator column strategy.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests switching tenant context (e.g., header-based) and ensuring data isolation between tenants.  
+    🔹 [Project directory](advanced/25-multi-tenant-saas-platform)
+
+26. **Custom Load Balancer**  
+    🔹 This is a backend in Java using **Netty**, implementing Round-Robin or Least-Connections algorithms.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests with backend mock servers, verifying request distribution matches the algorithm.  
+    🔹 [Project directory](advanced/26-custom-load-balancer)
+
+27. **Change Data Capture Service**  
+    🔹 This is a backend in Java using **Debezium** (embedded) or tailing MySQL binlogs directly.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests making DB changes and asserting the capture service emits the corresponding events.  
+    🔹 [Project directory](advanced/27-change-data-capture-service)
+
+28. **Distributed Counter**  
+    🔹 This is a backend in Java using **CRDTs** or **Redis HyperLogLog** for approximate counting at scale.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Concurrent load tests incrementing the counter and verifying the final count (or error margin).  
+    🔹 [Project directory](advanced/28-distributed-counter)
+
+29. **Video Transcoding Service**  
+    🔹 This is a backend in Java using **Jave2** or FFmpeg, managing a queue of video conversion jobs.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests uploading a video and waiting for the transcoded output to appear in storage.  
+    🔹 [Project directory](advanced/29-video-transcoding-service)
+
+30. **Recommendation Engine**  
+    🔹 This is a backend in Java using **Apache Mahout** or simple Collaborative Filtering.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Unit tests with a known dataset matrix, verifying that the top N recommendations match expected items.  
+    🔹 [Project directory](advanced/30-recommendation-engine)
+
+31. **High Frequency Trading Bot**  
+    🔹 This is a backend in Java using **LMAX Disruptor** for ultra-low latency event processing.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Benchmark tests measuring the time from "tick" ingestion to "order" generation (latency in microseconds).  
+    🔹 [Project directory](advanced/31-high-frequency-trading-bot)
+
+32. **Geospatial Indexing Service**  
+    🔹 This is a backend in Java using **R-Tree** or **Quadtree** implementation (or PostGIS integration).  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Unit tests adding points and querying for "points within radius", verifying spatial accuracy.  
+    🔹 [Project directory](advanced/32-geospatial-indexing-service)
+
+33. **Distributed Key-Value Store**  
+    🔹 This is a backend in Java, implementing consistent hashing and replication (like DynamoDB basics).  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests killing a node and verifying data can still be retrieved from replicas.  
+    🔹 [Project directory](advanced/33-distributed-key-value-store)
+
+34. **Log Aggregator Agent**  
+    🔹 This is a backend in Java, tailing local files and shipping logs to a central server (like Filebeat).  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests writing to a monitored file and verifying the agent forwards the lines.  
+    🔹 [Project directory](advanced/34-log-aggregator-agent)
+
+35. **Voice Recognition API**  
+    🔹 This is a backend in Java using **Vosk** or **Sphinx** for offline speech-to-text.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests uploading an audio sample and checking the returned text transcript.  
+    🔹 [Project directory](advanced/35-voice-recognition-api)
+
+36. **Code Execution Sandbox**  
+    🔹 This is a backend in Java using **Docker Java API** to run untrusted code safely in isolated containers.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests submitting infinite loops or malicious code and verifying container limits/timeout.  
+    🔹 [Project directory](advanced/36-code-execution-sandbox)
+
+37. **Distributed File System**  
+    🔹 This is a backend in Java, implementing chunking and distribution of files across nodes (like HDFS mini).  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests uploading a large file, verifying chunks are spread across mock nodes.  
+    🔹 [Project directory](advanced/37-distributed-file-system)
+
+38. **API Analytics Dashboard**  
+    🔹 This is a backend in Java, aggregating API usage metrics (latency, error rates) into time-series data.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Load tests generating traffic and verifying the aggregation logic (e.g., p95 latency calculation).  
+    🔹 [Project directory](advanced/38-api-analytics-dashboard)
+
+39. **Graph Database Implementation**  
+    🔹 This is a backend in Java, implementing a graph structure (nodes/edges) with traversal algorithms.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Unit tests creating a graph and running BFS/DFS or shortest path algorithms.  
+    🔹 [Project directory](advanced/39-graph-database-implementation)
+
+40. **Workflow Orchestration Engine**  
+    🔹 This is a backend in Java, parsing and executing DAGs (Directed Acyclic Graphs) of tasks.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Unit tests defining a DAG with dependencies and verifying the execution order.  
+    🔹 [Project directory](advanced/40-workflow-orchestration-engine)
+
+41. **Custom Identity Provider**  
+    🔹 This is a backend in Java using **Spring Authorization Server**, implementing OIDC (OpenID Connect).  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests using an OIDC client to perform the full login flow and validate ID tokens.  
+    🔹 [Project directory](advanced/41-custom-identity-provider)
+
+42. **Distributed Web Crawler**  
+    🔹 This is a backend in Java using **Storm** or **Hazelcast** to coordinate crawl frontiers across nodes.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests pointing the crawler at a local test site and verifying page visitation coverage.  
+    🔹 [Project directory](advanced/42-distributed-web-crawler)
+
+43. **Payment Reconciliation System**  
+    🔹 This is a backend in Java, processing large datasets to match internal records with bank statements.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Unit tests with mismatched datasets to verify discrepancy detection logic.  
+    🔹 [Project directory](advanced/43-payment-reconciliation-system)
+
+44. **Distributed Rate Limiter**  
+    🔹 This is a backend in Java using **Redis Lua Scripts** (Sliding Window Log) shared across instances.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Distributed load test verifying that the global limit is respected across multiple app instances.  
+    🔹 [Project directory](advanced/44-distributed-rate-limiter)
+
+45. **E2E Encrypted Chat**  
+    🔹 This is a backend in Java, handling key exchange (Diffie-Hellman) and relaying encrypted messages.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests where the server cannot decrypt the message, but the recipient can.  
+    🔹 [Project directory](advanced/45-e2e-encrypted-chat)
+
+46. **Anomaly Detection System**  
+    🔹 This is a backend in Java using statistical methods (e.g., Z-score) or isolation forests on stream data.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Unit tests feeding a stream of normal data followed by an outlier and checking for alert generation.  
+    🔹 [Project directory](advanced/46-anomaly-detection-system)
+
+47. **Digital Asset Management**  
+    🔹 This is a backend in Java, handling metadata extraction (EXIF, XMP) and versioning of assets.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests uploading media and searching by extracted metadata.  
+    🔹 [Project directory](advanced/47-digital-asset-management)
+
+48. **WebAssembly Host**  
+    🔹 This is a backend in Java using **Chicory** or **GraalVM**, executing WASM modules server-side.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Unit tests loading a compiled WASM function (e.g., Rust/C++) and invoking it from Java.  
+    🔹 [Project directory](advanced/48-webassembly-host)
+
+49. **Reactive Microservices**  
+    🔹 This is a microservices backend in Java using **Spring WebFlux** and **RSocket** for backpressure support.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests using **StepVerifier** to check reactive streams and backpressure signals.  
+    🔹 [Project directory](advanced/49-reactive-microservices)
+
+50. **Chaos Engineering Tool**  
+    🔹 This is a backend in Java, injecting failures (latency, exceptions) into running JVMs (agent-based).  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests attaching the agent to a dummy app and verifying that configured exceptions are thrown.  
+    🔹 [Project directory](advanced/50-chaos-engineering-tool)

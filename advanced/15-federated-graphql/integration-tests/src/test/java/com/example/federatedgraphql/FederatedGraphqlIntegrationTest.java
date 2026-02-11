@@ -114,11 +114,10 @@ public class FederatedGraphqlIntegrationTest {
     @Test
     void verifyFederatedQuery() {
         Integer routerPort = routerContainer.getMappedPort(4000);
-        WebTestClient webTestClient = WebTestClient.bindToServer()
-                .baseUrl("http://localhost:" + routerPort + "/graphql")
-                .build();
+        WebTestClient.Builder clientBuilder = WebTestClient.bindToServer()
+                .baseUrl("http://localhost:" + routerPort + "/graphql");
 
-        HttpGraphQlTester tester = HttpGraphQlTester.builder(webTestClient).build();
+        HttpGraphQlTester tester = HttpGraphQlTester.builder(clientBuilder).build();
 
         // Test: Get Book with Author (spanning two services)
         String query = """

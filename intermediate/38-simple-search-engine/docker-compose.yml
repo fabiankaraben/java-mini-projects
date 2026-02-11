@@ -1,0 +1,8 @@
+services:
+  simple-search-engine:
+    build: .
+    ports:
+      - "8080:8080"
+    container_name: simple-search-engine
+    environment:
+      - JAVA_TOOL_OPTIONS=-Djava.security.egd=file:/dev/./urandom

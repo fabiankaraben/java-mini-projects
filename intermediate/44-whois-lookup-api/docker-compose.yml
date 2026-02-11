@@ -1,0 +1,6 @@
+services:
+  whois-api:
+    build: .
+    ports:
+      - "8080:8080"
+    container_name: whois-lookup-api

@@ -1,0 +1,35 @@
+package com.example.ruleengine.rules
+
+import com.example.ruleengine.model.Order;
+
+rule "High Value Order"
+    when
+        $order : Order(amount > 10000)
+    then
+        $order.setDiscount(0.15);
+        $order.setRuleApplied("High Value Order");
+end
+
+rule "Loyal Customer Order"
+    when
+        $order : Order(customerType == "LOYAL", amount <= 10000 && amount > 1000)
+    then
+        $order.setDiscount(0.10);
+        $order.setRuleApplied("Loyal Customer Order");
+end
+
+rule "Standard Order"
+    when
+        $order : Order(amount <= 1000, customerType != "VIP")
+    then
+        $order.setDiscount(0.0);
+        $order.setRuleApplied("Standard Order");
+end
+
+rule "VIP Customer Flat Discount"
+    when
+        $order : Order(customerType == "VIP")
+    then
+        $order.setDiscount(0.20);
+        $order.setRuleApplied("VIP Customer Flat Discount");
+end

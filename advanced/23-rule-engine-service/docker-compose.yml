@@ -1,0 +1,6 @@
+services:
+  rule-engine-service:
+    build: .
+    ports:
+      - "8080:8080"
+    container_name: rule-engine-service

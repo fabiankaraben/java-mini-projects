@@ -1,0 +1,6 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    container_name: simple-wiki-api

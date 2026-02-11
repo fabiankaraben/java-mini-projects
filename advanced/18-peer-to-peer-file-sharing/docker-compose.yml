@@ -1,0 +1,24 @@
+services:
+  peer1:
+    build: .
+    ports:
+      - "8081:8080"
+      - "9091:9091"
+    environment:
+      - SERVER_PORT=8080
+      - P2P_SERVER_PORT=9091
+      - P2P_STORAGE_PATH=/app/storage
+    volumes:
+      - ./storage/peer1:/app/storage
+
+  peer2:
+    build: .
+    ports:
+      - "8082:8080"
+      - "9092:9092"
+    environment:
+      - SERVER_PORT=8080
+      - P2P_SERVER_PORT=9092
+      - P2P_STORAGE_PATH=/app/storage
+    volumes:
+      - ./storage/peer2:/app/storage

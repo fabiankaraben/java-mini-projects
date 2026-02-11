@@ -490,6 +490,126 @@ Java mini-projects, each one a new challenge.
     🧪 **Testing**: Integration tests verifying the application startup loads properties from a Git repo or local config backend.  
     🔹 [Project directory](intermediate/30-config-management)
 
+31. **Feature Flag Service**  
+    🔹 This is a backend in Java using **FF4j** or custom logic, managing feature toggles via API.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests enabling/disabling flags and verifying endpoint behavior changes.  
+    🔹 [Project directory](intermediate/31-feature-flag-service)
+
+32. **QR Code Generator**  
+    🔹 This is a backend in Java using **ZXing**, generating QR code images from text.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests generating a QR code and using a reader library to decode and verify the content.  
+    🔹 [Project directory](intermediate/32-qr-code-generator)
+
+33. **Two-Factor Authentication (TOTP)**  
+    🔹 This is a backend in Java, implementing TOTP (Time-based One-Time Password) validation (like Google Authenticator).  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Unit tests generating a secret, creating a code, and validating it within the time window.  
+    🔹 [Project directory](intermediate/33-two-factor-auth)
+
+34. **Web Scraper API**  
+    🔹 This is a backend in Java using **Jsoup**, extracting specific data (e.g., meta tags, headers) from a provided URL.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Unit tests with mocked HTML content to verify extraction logic handles various DOM structures.  
+    🔹 [Project directory](intermediate/34-web-scraper-api)
+
+35. **Markdown to HTML Converter**  
+    🔹 This is a backend in Java using **CommonMark** or **Flexmark**, converting Markdown text to HTML.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Unit tests providing Markdown input and asserting the correct HTML output structure.  
+    🔹 [Project directory](intermediate/35-markdown-converter)
+
+36. **IP Geolocation Service**  
+    🔹 This is a backend in Java using **MaxMind GeoIP2**, returning location data for a given IP address.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests with known IP addresses (or mocked database reader) to verify returned country/city data.  
+    🔹 [Project directory](intermediate/36-ip-geolocation-service)
+
+37. **URL Health Monitor**  
+    🔹 This is a backend in Java using scheduled tasks, periodically checking a list of URLs and recording their status.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests adding a URL to monitor and verifying the status history is updated after the schedule runs.  
+    🔹 [Project directory](intermediate/37-url-health-monitor)
+
+38. **Simple Search Engine**  
+    🔹 This is a backend in Java, implementing a basic inverted index to search text documents.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Unit tests indexing a set of documents and asserting that search queries return the correct document IDs.  
+    🔹 [Project directory](intermediate/38-simple-search-engine)
+
+39. **Digital Signature Service**  
+    🔹 This is a backend in Java using `java.security`, signing data with a private key and verifying with a public key.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Unit tests signing data and verifying the signature with the corresponding key pair.  
+    🔹 [Project directory](intermediate/39-digital-signature-service)
+
+40. **Syntax Highlighter API**  
+    🔹 This is a backend in Java, taking code text and returning HTML with syntax highlighting (e.g. using a library like **RSyntaxTextArea** internals or similar).  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Unit tests submitting code snippets and checking for expected HTML span tags and classes.  
+    🔹 [Project directory](intermediate/40-syntax-highlighter-api)
+
+41. **Stock Price Simulator**  
+    🔹 This is a backend in Java, streaming random stock price updates via Server-Sent Events (SSE).  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests connecting to the SSE endpoint and verifying the stream format and data frequency.  
+    🔹 [Project directory](intermediate/41-stock-price-simulator)
+
+42. **File Encryption Service**  
+    🔹 This is a backend in Java using `javax.crypto`, exposing endpoints to encrypt and decrypt files.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests uploading a file to encrypt, then decrypting it and verifying it matches the original.  
+    🔹 [Project directory](intermediate/42-file-encryption-service)
+
+43. **Audio Streaming Server**  
+    🔹 This is a backend in Java, streaming audio files using HTTP Byte Ranges.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests requesting specific byte ranges and verifying `Content-Range` headers and partial content.  
+    🔹 [Project directory](intermediate/43-audio-streaming-server)
+
+44. **Whois Lookup API**  
+    🔹 This is a backend in Java using **Apache Commons Net**, querying WHOIS servers for domain information.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests (possibly with a mock WHOIS server) to parse and return domain registration details.  
+    🔹 [Project directory](intermediate/44-whois-lookup-api)
+
+45. **Sentiment Analysis API**  
+    🔹 This is a backend in Java using a simple NLP library (like **Stanford CoreNLP** or a basic word list), scoring text sentiment.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Unit tests with clear positive/negative text samples to verify scoring logic.  
+    🔹 [Project directory](intermediate/45-sentiment-analysis-api)
+
+46. **Leaderboard Service**  
+    🔹 This is a backend in Java using **Redis Sorted Sets**, managing real-time high scores.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests using **Testcontainers** (Redis) to submit scores and retrieve the top N rank.  
+    🔹 [Project directory](intermediate/46-leaderboard-service)
+
+47. **Audit Logging Service**  
+    🔹 This is a backend in Java using **AOP (Aspect Oriented Programming)**, automatically logging method calls and changes.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests triggering service methods and verifying audit records are created in the database/log.  
+    🔹 [Project directory](intermediate/47-audit-logging-service)
+
+48. **Distributed Lock Manager**  
+    🔹 This is a backend in Java using **Redis** or **Database** locks, ensuring exclusive access to a resource.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Concurrency tests trying to acquire the lock from multiple threads/instances and verifying only one succeeds.  
+    🔹 [Project directory](intermediate/48-distributed-lock-manager)
+
+49. **Simple Wiki API**  
+    🔹 This is a backend in Java, storing pages with version history (simple version control).  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Integration tests updating a page multiple times and retrieving past versions to verify history integrity.  
+    🔹 [Project directory](intermediate/49-simple-wiki-api)
+
+50. **WebHook Delivery System**  
+    🔹 This is a backend in Java, accepting events and delivering payloads to registered callback URLs.  
+    📦 **Dependency Manager**: Gradle  
+    🧪 **Testing**: Integration tests using **WireMock** as a receiver. Trigger an event and verify the system calls the webhook URL.  
+    🔹 [Project directory](intermediate/50-webhook-delivery-system)
+
 ## Advanced
 1. **Microservices with Consul**  
     🔹 This is a microservices backend in Java using **Spring Cloud Consul**, service discovery, and health checks.  

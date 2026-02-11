@@ -1,0 +1,23 @@
+services:
+  load-balancer:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - LB_PORT=8080
+      - BACKEND_SERVERS=backend1:80,backend2:80
+    depends_on:
+      - backend1
+      - backend2
+
+  backend1:
+    image: hashicorp/http-echo
+    command: -text="Hello from Backend 1"
+    expose:
+      - "80"
+
+  backend2:
+    image: hashicorp/http-echo
+    command: -text="Hello from Backend 2"
+    expose:
+      - "80"

@@ -1,0 +1,61 @@
+services:
+  author-service:
+    build: ./author-service
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:8081/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - federated-net
+
+  book-service:
+    build: ./book-service
+    ports:
+      - "8082:8082"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:8082/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - federated-net
+
+  rover:
+    image: ghcr.io/apollographql/rover:v0.26.0
+    depends_on:
+      author-service:
+        condition: service_healthy
+      book-service:
+        condition: service_healthy
+    volumes:
+      - ./supergraph-config.yaml:/etc/config.yaml
+      - schema-data:/dist
+    command: ["supergraph", "compose", "--config", "/etc/config.yaml", "--output", "/dist/supergraph.graphql"]
+    networks:
+      - federated-net
+
+  router:
+    image: ghcr.io/apollographql/router:v1.57.0
+    ports:
+      - "4000:4000"
+    depends_on:
+      rover:
+        condition: service_completed_successfully
+    volumes:
+      - schema-data:/dist
+      - ./router-config.yaml:/etc/router.yaml
+    environment:
+      APOLLO_ROUTER_SUPERGRAPH_PATH: /dist/supergraph.graphql
+      APOLLO_ROUTER_CONFIG_PATH: /etc/router.yaml
+      APOLLO_ROUTER_HOT_RELOAD: "true"
+    networks:
+      - federated-net
+
+volumes:
+  schema-data:
+
+networks:
+  federated-net:

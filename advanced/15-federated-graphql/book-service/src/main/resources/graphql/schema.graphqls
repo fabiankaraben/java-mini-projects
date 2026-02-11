@@ -1,0 +1,15 @@
+type Query {
+    books: [Book]
+    bookById(id: ID!): Book
+}
+
+type Book @key(fields: "id") {
+    id: ID!
+    title: String
+    author: Author
+}
+
+type Author @key(fields: "id") @extends {
+    id: ID! @external
+    books: [Book]
+}

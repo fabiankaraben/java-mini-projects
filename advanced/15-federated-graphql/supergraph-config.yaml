@@ -1,0 +1,9 @@
+subgraphs:
+  author:
+    routing_url: http://author-service:8081/graphql
+    schema:
+      subgraph_url: http://author-service:8081/graphql
+  book:
+    routing_url: http://book-service:8082/graphql
+    schema:
+      subgraph_url: http://book-service:8082/graphql

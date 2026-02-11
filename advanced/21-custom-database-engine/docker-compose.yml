@@ -1,0 +1,9 @@
+services:
+  custom-db-engine:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DB_DATA_FILE=/app/data/db.log

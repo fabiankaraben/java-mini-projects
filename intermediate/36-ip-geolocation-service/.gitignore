@@ -1,0 +1,10 @@
+.gradle
+build
+out
+.idea
+*.iml
+.DS_Store
+*.class
+*.jar
+*.war
+src/main/resources/GeoLite2-City.mmdb

@@ -1,0 +1,9 @@
+services:
+  ip-geolocation-service:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src/main/resources/GeoLite2-City.mmdb:/app/src/main/resources/GeoLite2-City.mmdb
+    environment:
+      - GEOIP_DATABASE_PATH=file:/app/src/main/resources/GeoLite2-City.mmdb

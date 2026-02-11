@@ -1,0 +1,22 @@
+# Docker
+.docker/
+
+# Build
+.gradle/
+build/
+out/
+target/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db

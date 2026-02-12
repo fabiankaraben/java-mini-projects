@@ -1,6 +1,5 @@
 package com.example.weather;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -30,7 +29,6 @@ public class WeatherApp {
 
     static class WeatherHandler implements HttpHandler {
         private final WeatherService weatherService;
-        private final ObjectMapper objectMapper = new ObjectMapper();
 
         public WeatherHandler(WeatherService weatherService) {
             this.weatherService = weatherService;

@@ -1,0 +1,18 @@
+{
+  "targets": [
+    {
+      "className": "com.example.chaos.dummy.DummyService",
+      "methodName": "sayHello",
+      "failureType": "LATENCY",
+      "latencyMs": 2000,
+      "rate": 1.0
+    },
+    {
+      "className": "com.example.chaos.dummy.DummyService",
+      "methodName": "processData",
+      "failureType": "EXCEPTION",
+      "exceptionClass": "java.lang.RuntimeException",
+      "rate": 1.0
+    }
+  ]
+}

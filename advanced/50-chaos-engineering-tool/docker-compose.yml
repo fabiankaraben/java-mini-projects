@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  chaos-app:
+    build: .
+    environment:
+      - CHAOS_CONFIG_FILE=chaos-config.json
+    volumes:
+      - ./chaos-config.json:/app/chaos-config.json

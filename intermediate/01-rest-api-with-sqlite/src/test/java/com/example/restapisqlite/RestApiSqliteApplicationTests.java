@@ -23,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         "spring.datasource.url=jdbc:sqlite::memory:",
         "spring.jpa.hibernate.ddl-auto=create-drop"
 })
+@SuppressWarnings("null")
 class RestApiSqliteApplicationTests {
 
     @Autowired

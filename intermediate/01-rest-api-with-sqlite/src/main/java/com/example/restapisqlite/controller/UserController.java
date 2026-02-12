@@ -4,6 +4,7 @@ import com.example.restapisqlite.model.User;
 import com.example.restapisqlite.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,19 +22,19 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+    public ResponseEntity<User> getUserById(@PathVariable long id) {
         return userRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public User createUser(@RequestBody @NonNull User user) {
         return userRepository.save(user);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User userDetails) {
         return userRepository.findById(id)
                 .map(user -> {
                     user.setName(userDetails.getName());
@@ -44,7 +45,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
             return ResponseEntity.noContent().build();

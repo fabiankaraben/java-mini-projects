@@ -1,0 +1,8 @@
+services:
+  app:
+    build: .
+    ports:
+      - "7000:7000"
+      - "8080:8080"
+    environment:
+      - SPRING_RSOCKET_SERVER_PORT=7000

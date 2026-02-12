@@ -25,14 +25,12 @@ public class AuditAspect {
         String arguments = Arrays.toString(joinPoint.getArgs());
 
         Object result = null;
-        String returnValue;
-        Throwable exception = null;
+        String returnValue = null;
 
         try {
             result = joinPoint.proceed();
             returnValue = result != null ? result.toString() : "null";
         } catch (Throwable e) {
-            exception = e;
             returnValue = "Exception: " + e.getMessage();
             throw e;
         } finally {

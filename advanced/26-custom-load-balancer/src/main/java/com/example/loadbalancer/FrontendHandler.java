@@ -2,9 +2,7 @@ package com.example.loadbalancer;
 
 import com.example.loadbalancer.strategy.LoadBalancingStrategy;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.util.List;

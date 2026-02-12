@@ -1,6 +1,5 @@
 package com.fabiankaraben.imageprocessing.service;
 
-import ij.IJ;
 import ij.ImagePlus;
 import ij.process.ImageProcessor;
 import org.springframework.stereotype.Service;
@@ -8,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 

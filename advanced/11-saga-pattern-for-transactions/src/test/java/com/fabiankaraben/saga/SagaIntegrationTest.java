@@ -3,7 +3,6 @@ package com.fabiankaraben.saga;
 import com.fabiankaraben.saga.coreapi.CoreApi;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.eventhandling.EventHandler;
-import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.inmemory.InMemoryEventStorageEngine;
 import org.junit.jupiter.api.Assertions;
@@ -20,8 +19,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
 import static org.awaitility.Awaitility.await;
 
 @SpringBootTest

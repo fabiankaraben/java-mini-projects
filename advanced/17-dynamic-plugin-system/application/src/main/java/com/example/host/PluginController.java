@@ -2,12 +2,10 @@ package com.example.host;
 
 import com.example.plugin.api.GreetingExtensionPoint;
 import org.pf4j.PluginManager;
-import org.pf4j.PluginWrapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

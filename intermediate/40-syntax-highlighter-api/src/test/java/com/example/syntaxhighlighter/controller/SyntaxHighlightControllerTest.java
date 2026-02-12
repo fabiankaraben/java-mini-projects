@@ -1,6 +1,5 @@
 package com.example.syntaxhighlighter.controller;
 
-import com.example.syntaxhighlighter.model.HighlightRequest;
 import com.example.syntaxhighlighter.service.SyntaxHighlightService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,7 @@
 package com.example.ruleengine.service;
 
-import com.example.ruleengine.config.DroolsConfig;
 import com.example.ruleengine.model.Order;
 import org.junit.jupiter.api.Test;
-import org.kie.api.runtime.KieContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

@@ -2,7 +2,6 @@ package com.example.mongodbstore;
 
 import com.example.mongodbstore.model.Product;
 import com.example.mongodbstore.repository.ProductRepository;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

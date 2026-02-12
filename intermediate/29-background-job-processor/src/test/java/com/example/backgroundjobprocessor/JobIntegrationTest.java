@@ -1,6 +1,5 @@
 package com.example.backgroundjobprocessor;
 
-import com.example.backgroundjobprocessor.service.EmailService;
 import org.jobrunr.storage.StorageProvider;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

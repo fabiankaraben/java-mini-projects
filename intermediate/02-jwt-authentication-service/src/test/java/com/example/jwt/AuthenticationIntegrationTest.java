@@ -4,6 +4,7 @@ import com.example.jwt.dto.AuthenticationRequest;
 import com.example.jwt.dto.RegisterRequest;
 import com.example.jwt.model.Role;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Objects;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -33,8 +34,8 @@ class AuthenticationIntegrationTest {
         RegisterRequest registerRequest = new RegisterRequest("integrationUser", "password123", Role.USER);
         
         mockMvc.perform(post("/api/auth/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(registerRequest)))
+                .contentType(Objects.requireNonNull(MediaType.APPLICATION_JSON))
+                .content(Objects.requireNonNull(objectMapper.writeValueAsString(registerRequest))))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accessToken").exists())
                 .andExpect(jsonPath("$.refreshToken").exists());
@@ -43,8 +44,8 @@ class AuthenticationIntegrationTest {
         AuthenticationRequest loginRequest = new AuthenticationRequest("integrationUser", "password123");
         
         MvcResult loginResult = mockMvc.perform(post("/api/auth/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(loginRequest)))
+                .contentType(Objects.requireNonNull(MediaType.APPLICATION_JSON))
+                .content(Objects.requireNonNull(objectMapper.writeValueAsString(loginRequest))))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accessToken").exists())
                 .andReturn();

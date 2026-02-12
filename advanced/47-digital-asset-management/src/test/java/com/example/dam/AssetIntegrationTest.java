@@ -1,6 +1,5 @@
 package com.example.dam;
 
-import com.example.dam.model.Asset;
 import com.example.dam.repository.AssetRepository;
 import com.example.dam.service.MetadataExtractionService;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,14 +59,14 @@ public class AssetIntegrationTest {
         );
 
         mockMvc.perform(multipart("/api/assets").file(file))
-                .andExpect(status.isCreated())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.filename", is("test-image.jpg")))
                 .andExpect(jsonPath("$.version", is(1)))
                 .andExpect(jsonPath("$.metadata['Exif - Artist']", is("Test Artist")));
 
         // Upload a second version (same filename)
         mockMvc.perform(multipart("/api/assets").file(file))
-                .andExpect(status.isCreated())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.filename", is("test-image.jpg")))
                 .andExpect(jsonPath("$.version", is(2)));
 
@@ -75,13 +74,13 @@ public class AssetIntegrationTest {
         mockMvc.perform(get("/api/assets/search")
                         .param("key", "Exif - Artist")
                         .param("value", "Test Artist"))
-                .andExpect(status.isOk())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2))); // Both versions match
 
         mockMvc.perform(get("/api/assets/search")
                         .param("key", "Exif - Make")
                         .param("value", "Non Existent"))
-                .andExpect(status.isOk())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(0)));
     }
 }

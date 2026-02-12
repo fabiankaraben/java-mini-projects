@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,23 +17,25 @@ public class UserController {
     }
 
     @GetMapping
+    @SuppressWarnings("null")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @GetMapping("/{id}")
+    @SuppressWarnings("null")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        return userRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.of(userRepository.findById(id));
     }
 
     @PostMapping
+    @SuppressWarnings("null")
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
     @PutMapping("/{id}")
+    @SuppressWarnings("null")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
         return userRepository.findById(id)
                 .map(user -> {
@@ -40,10 +43,11 @@ public class UserController {
                     user.setEmail(userDetails.getEmail());
                     return ResponseEntity.ok(userRepository.save(user));
                 })
-                .orElse(ResponseEntity.notFound().build());
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
+    @SuppressWarnings("null")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);

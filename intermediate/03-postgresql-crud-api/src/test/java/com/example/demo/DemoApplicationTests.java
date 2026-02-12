@@ -11,6 +11,8 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.util.Objects;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -27,8 +29,8 @@ class DemoApplicationTests {
 	@Autowired
 	private UserRepository userRepository;
 
-	private String baseUrl;
-	private RestTemplate restTemplate;
+	private String baseUrl = "";
+	private RestTemplate restTemplate = new RestTemplate();
 
 	@BeforeEach
 	void setUp() {
@@ -43,12 +45,12 @@ class DemoApplicationTests {
 		User createdUser = restTemplate.postForObject(baseUrl, user, User.class);
 
 		assertThat(createdUser).isNotNull();
-		assertThat(createdUser.getId()).isNotNull();
-		assertThat(createdUser.getName()).isEqualTo("John Doe");
+		assertThat(Objects.requireNonNull(createdUser).getId()).isNotNull();
+		assertThat(Objects.requireNonNull(createdUser).getName()).isEqualTo("John Doe");
 
-		User retrievedUser = restTemplate.getForObject(baseUrl + "/" + createdUser.getId(), User.class);
+		User retrievedUser = restTemplate.getForObject(baseUrl + "/" + Objects.requireNonNull(createdUser).getId(), User.class);
 		assertThat(retrievedUser).isNotNull();
-		assertThat(retrievedUser.getEmail()).isEqualTo("john@example.com");
+		assertThat(Objects.requireNonNull(retrievedUser).getEmail()).isEqualTo("john@example.com");
 	}
 
 	@Test
@@ -67,7 +69,7 @@ class DemoApplicationTests {
 		user.setName("Charlie Updated");
 		restTemplate.put(baseUrl + "/" + user.getId(), user);
 
-		User updatedUser = userRepository.findById(user.getId()).orElseThrow();
+		User updatedUser = userRepository.findById(Objects.requireNonNull(user.getId())).orElseThrow();
 		assertThat(updatedUser.getName()).isEqualTo("Charlie Updated");
 	}
 
@@ -77,6 +79,6 @@ class DemoApplicationTests {
 
 		restTemplate.delete(baseUrl + "/" + user.getId());
 
-		assertThat(userRepository.findById(user.getId())).isEmpty();
+		assertThat(userRepository.findById(Objects.requireNonNull(user.getId()))).isEmpty();
 	}
 }

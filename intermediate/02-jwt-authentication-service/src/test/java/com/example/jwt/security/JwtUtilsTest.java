@@ -6,18 +6,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class JwtUtilsTest {
 
-    private JwtUtils jwtUtils;
+    private final JwtUtils jwtUtils = new JwtUtils();
 
     @BeforeEach
     void setUp() {
-        jwtUtils = new JwtUtils();
-        ReflectionTestUtils.setField(jwtUtils, "secret", "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970");
-        ReflectionTestUtils.setField(jwtUtils, "jwtExpiration", 86400000L); // 1 day
-        ReflectionTestUtils.setField(jwtUtils, "refreshExpiration", 604800000L); // 7 days
+        JwtUtils nonNullUtils = Objects.requireNonNull(jwtUtils);
+        ReflectionTestUtils.setField(nonNullUtils, "secret", "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970");
+        ReflectionTestUtils.setField(nonNullUtils, "jwtExpiration", 86400000L); // 1 day
+        ReflectionTestUtils.setField(nonNullUtils, "refreshExpiration", 604800000L); // 7 days
     }
 
     @Test

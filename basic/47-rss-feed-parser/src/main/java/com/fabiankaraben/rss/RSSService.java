@@ -15,11 +15,12 @@ public class RSSService {
     public List<FeedItem> parseFeed(String feedUrl) throws Exception {
         URL url = java.net.URI.create(feedUrl).toURL();
         SyndFeedInput input = new SyndFeedInput();
-        SyndFeed feed = input.build(new XmlReader(url));
-
-        return feed.getEntries().stream()
-                .map(this::mapToFeedItem)
-                .collect(Collectors.toList());
+        try (XmlReader reader = new XmlReader(url.openStream())) {
+            SyndFeed feed = input.build(reader);
+            return feed.getEntries().stream()
+                    .map(this::mapToFeedItem)
+                    .collect(Collectors.toList());
+        }
     }
 
     public List<FeedItem> parseFeedContent(String xmlContent) throws Exception {

@@ -1,5 +1,6 @@
 package com.example.jwt;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -33,7 +34,7 @@ public class App {
         public void handle(HttpExchange exchange) throws IOException {
             if ("POST".equals(exchange.getRequestMethod())) {
                 try {
-                    Map<String, Object> requestBody = objectMapper.readValue(exchange.getRequestBody(), Map.class);
+                    Map<String, Object> requestBody = objectMapper.readValue(exchange.getRequestBody(), new TypeReference<Map<String, Object>>() {});
                     String subject = (String) requestBody.get("subject");
                     
                     if (subject == null || subject.isEmpty()) {
@@ -65,7 +66,7 @@ public class App {
             if ("POST".equals(exchange.getRequestMethod())) { // Changed to POST to easily send token in body
                 try {
                     // Expecting {"token": "..."}
-                    Map<String, String> requestBody = objectMapper.readValue(exchange.getRequestBody(), Map.class);
+                    Map<String, String> requestBody = objectMapper.readValue(exchange.getRequestBody(), new TypeReference<Map<String, String>>() {});
                     String token = requestBody.get("token");
 
                     if (token == null) {

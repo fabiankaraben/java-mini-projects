@@ -1,0 +1,35 @@
+services:
+  namenode:
+    build: .
+    container_name: namenode
+    ports:
+      - "8080:8080"
+    environment:
+      - DFS_DATANODES_URLS=http://datanode1:8080,http://datanode2:8080
+      - DFS_NAMENODE_CHUNK_SIZE=1048576
+    depends_on:
+      - datanode1
+      - datanode2
+
+  datanode1:
+    build: .
+    container_name: datanode1
+    environment:
+      - DFS_DATANODE_STORAGE_DIR=/data
+      # Provide dummy value to satisfy injection if needed, though they won't use it
+      - DFS_DATANODES_URLS=
+    volumes:
+      - datanode1-data:/data
+
+  datanode2:
+    build: .
+    container_name: datanode2
+    environment:
+      - DFS_DATANODE_STORAGE_DIR=/data
+      - DFS_DATANODES_URLS=
+    volumes:
+      - datanode2-data:/data
+
+volumes:
+  datanode1-data:
+  datanode2-data:

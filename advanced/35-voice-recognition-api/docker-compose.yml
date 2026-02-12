@@ -1,0 +1,6 @@
+services:
+  voice-recognition-api:
+    build: .
+    ports:
+      - "8080:8080"
+    container_name: voice-recognition-api

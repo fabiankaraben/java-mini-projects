@@ -14,6 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@SuppressWarnings("null")
 public class UserControllerTest {
 
     @Autowired
@@ -23,7 +24,6 @@ public class UserControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @SuppressWarnings("null")
     public void whenValidUser_thenReturns200() throws Exception {
         UserDto user = new UserDto();
         user.setUsername("john_doe");

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.iotgateway.IotGatewayIntegrationTest" tests="2" skipped="2" failures="0" errors="0" timestamp="2026-02-12T13:38:54.991Z" hostname="Fabians-MacBook-Air.local" time="0.001">
+  <properties/>
+  <testcase name="testSendCommand()" classname="com.example.iotgateway.IotGatewayIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testDeviceDataFlow()" classname="com.example.iotgateway.IotGatewayIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -23,14 +23,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Testcontainers
+@Testcontainers(disabledWithoutDocker = true)
 class IotGatewayIntegrationTest {
 
     @Container
     static final GenericContainer<?> mosquitto = new GenericContainer<>(DockerImageName.parse("eclipse-mosquitto:2.0"))
             .withExposedPorts(1883)
             .withCommand("mosquitto -c /mosquitto-no-auth.conf")
-            .withCopyFileToContainer(
+            .withCopyToContainer(
                     org.testcontainers.images.builder.Transferable.of("allow_anonymous true\nlistener 1883"),
                     "/mosquitto-no-auth.conf");
 

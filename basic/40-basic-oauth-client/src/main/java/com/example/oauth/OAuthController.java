@@ -31,11 +31,5 @@ public class OAuthController {
     }
 
     // Simple DTO for JSON response
-    private static class TokenResponse {
-        public final String accessToken;
-
-        public TokenResponse(String accessToken) {
-            this.accessToken = accessToken;
-        }
-    }
+    private record TokenResponse(String accessToken) {}
 }

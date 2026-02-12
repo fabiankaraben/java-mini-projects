@@ -1,0 +1,19 @@
+services:
+  log-aggregator:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/tmp/logs
+    environment:
+      - LOG_AGGREGATOR_FILE_PATH=/tmp/logs/app.log
+      - LOG_AGGREGATOR_SERVER_URL=http://log-server:1080/logs
+    depends_on:
+      - log-server
+
+  log-server:
+    image: mockserver/mockserver:mockserver-5.15.0
+    ports:
+      - "1080:1080"
+    environment:
+      - MOCKSERVER_WATCH_INITIALIZATION_JSON=true

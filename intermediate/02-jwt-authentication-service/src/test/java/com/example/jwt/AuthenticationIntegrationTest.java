@@ -4,7 +4,6 @@ import com.example.jwt.dto.AuthenticationRequest;
 import com.example.jwt.dto.RegisterRequest;
 import com.example.jwt.model.Role;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Objects;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

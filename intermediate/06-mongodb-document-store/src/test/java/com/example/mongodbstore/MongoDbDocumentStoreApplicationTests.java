@@ -18,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Testcontainers
+@SuppressWarnings("null")
 class MongoDbDocumentStoreApplicationTests {
 
     @Container

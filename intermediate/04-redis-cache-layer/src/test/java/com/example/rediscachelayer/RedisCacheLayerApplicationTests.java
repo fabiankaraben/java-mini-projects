@@ -18,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RedisCacheLayerApplicationTests {
 
     @Container
+    @SuppressWarnings("resource")
     public static GenericContainer<?> redis = new GenericContainer<>(DockerImageName.parse("redis:7.2-alpine"))
             .withExposedPorts(6379);
 

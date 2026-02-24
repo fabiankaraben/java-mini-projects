@@ -26,6 +26,7 @@ This mini-project implements a simple REST API using Spring Boot and SQLite as t
     ./mvnw spring-boot:run
     ```
     (Ensure you have the Maven wrapper script `mvnw`. If not, you can use `mvn spring-boot:run` if Maven is installed globally).
+    (You can create the Maven wrapper script by running `mvn -N io.takari:maven:wrapper`)
 
 The application will start on `http://localhost:8080`.
 The SQLite database file `users.db` will be created in the project root directory.

@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@SuppressWarnings("null")
 class AuthenticationIntegrationTest {
 
     @Autowired
@@ -34,8 +35,8 @@ class AuthenticationIntegrationTest {
         RegisterRequest registerRequest = new RegisterRequest("integrationUser", "password123", Role.USER);
         
         mockMvc.perform(post("/api/auth/register")
-                .contentType(Objects.requireNonNull(MediaType.APPLICATION_JSON))
-                .content(Objects.requireNonNull(objectMapper.writeValueAsString(registerRequest))))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(registerRequest)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accessToken").exists())
                 .andExpect(jsonPath("$.refreshToken").exists());
@@ -44,8 +45,8 @@ class AuthenticationIntegrationTest {
         AuthenticationRequest loginRequest = new AuthenticationRequest("integrationUser", "password123");
         
         MvcResult loginResult = mockMvc.perform(post("/api/auth/login")
-                .contentType(Objects.requireNonNull(MediaType.APPLICATION_JSON))
-                .content(Objects.requireNonNull(objectMapper.writeValueAsString(loginRequest))))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(loginRequest)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accessToken").exists())
                 .andReturn();

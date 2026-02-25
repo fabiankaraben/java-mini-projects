@@ -1,35 +1,35 @@
 package com.fabiankaraben.http;
 
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.ServerConnector;
-import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
-import org.eclipse.jetty.ee10.servlet.ServletHolder;
+import org.apache.catalina.Context;
+import org.apache.catalina.startup.Tomcat;
+
+import java.io.File;
 
 public class SimpleHttpServer {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SimpleHttpServer.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger
+            .getLogger(SimpleHttpServer.class.getName());
     private static final int PORT = 8080;
-    private Server server;
-    private ServerConnector connector;
+    private Tomcat tomcat;
 
     public void start() throws Exception {
-        server = new Server();
-        connector = new ServerConnector(server);
-        connector.setPort(PORT);
-        server.addConnector(connector);
+        tomcat = new Tomcat();
+        tomcat.setBaseDir(System.getProperty("java.io.tmpdir"));
+        tomcat.setPort(PORT);
+        tomcat.getConnector(); // Trigger creation of default connector
 
-        ServletContextHandler context = new ServletContextHandler();
-        context.setContextPath("/");
-        context.addServlet(new ServletHolder(new HelloHandler()), "/*");
-        server.setHandler(context);
+        Context context = tomcat.addContext("", new File(".").getAbsolutePath());
+        Tomcat.addServlet(context, "HelloHandler", new HelloHandler());
+        context.addServletMappingDecoded("/*", "HelloHandler");
 
-        server.start();
+        tomcat.start();
         logger.info("Server started on port " + PORT);
     }
 
     public void stop() throws Exception {
-        if (server != null) {
-            server.stop();
+        if (tomcat != null) {
+            tomcat.stop();
+            tomcat.destroy();
             logger.info("Server stopped");
         }
     }
@@ -38,7 +38,7 @@ public class SimpleHttpServer {
         SimpleHttpServer httpServer = new SimpleHttpServer();
         try {
             httpServer.start();
-            
+
             // Add shutdown hook
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 logger.info("Stopping server...");
@@ -48,15 +48,17 @@ public class SimpleHttpServer {
                     logger.severe("Error stopping server: " + e.getMessage());
                 }
             }));
-            
+
+            httpServer.tomcat.getServer().await();
+
         } catch (Exception e) {
             logger.severe("Failed to start server: " + e.getMessage());
         }
     }
-    
+
     public int getPort() {
-        if (connector != null) {
-            return connector.getLocalPort();
+        if (tomcat != null && tomcat.getConnector() != null) {
+            return tomcat.getConnector().getLocalPort();
         }
         return PORT;
     }

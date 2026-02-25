@@ -1,67 +1,52 @@
 package com.fabiankaraben.http;
 
+import io.netty.channel.embedded.EmbeddedChannel;
+import io.netty.handler.codec.http.DefaultFullHttpRequest;
+import io.netty.handler.codec.http.FullHttpRequest;
+import io.netty.handler.codec.http.FullHttpResponse;
+import io.netty.handler.codec.http.HttpMethod;
+import io.netty.handler.codec.http.HttpResponseStatus;
+import io.netty.handler.codec.http.HttpVersion;
+import io.netty.util.CharsetUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
 class HelloHandlerTest {
 
-    @Mock
-    private HttpServletRequest request;
-
-    @Mock
-    private HttpServletResponse response;
-
-    private HelloHandler handler;
-    private StringWriter stringWriter;
-    private PrintWriter printWriter;
+    private EmbeddedChannel channel;
 
     @BeforeEach
     void setUp() {
-        handler = new HelloHandler();
-        stringWriter = new StringWriter();
-        printWriter = new PrintWriter(stringWriter);
+        channel = new EmbeddedChannel(new HelloHandler());
     }
 
     @Test
-    void doGet_ShouldReturnHelloWorld() throws IOException {
-        // Arrange
-        when(request.getRequestURI()).thenReturn("/");
-        when(response.getWriter()).thenReturn(printWriter);
+    void doGet_ShouldReturnHelloWorld() {
+        FullHttpRequest request = new DefaultFullHttpRequest(
+                HttpVersion.HTTP_1_1, HttpMethod.GET, "/");
 
-        // Act
-        handler.doGet(request, response);
+        channel.writeInbound(request);
 
-        // Assert
-        verify(response).setContentType("text/plain; charset=UTF-8");
-        assertEquals("Hello World", stringWriter.toString());
+        FullHttpResponse response = channel.readOutbound();
+
+        assertEquals(HttpResponseStatus.OK, response.status());
+        assertEquals("text/plain; charset=UTF-8", response.headers().get("Content-Type"));
+        assertEquals("Hello World", response.content().toString(CharsetUtil.UTF_8));
     }
 
     @Test
-    void doPost_ShouldReturnMethodNotAllowed() throws IOException {
-        // Arrange
-        when(request.getRequestURI()).thenReturn("/");
-        when(response.getWriter()).thenReturn(printWriter);
+    void doPost_ShouldReturnMethodNotAllowed() {
+        FullHttpRequest request = new DefaultFullHttpRequest(
+                HttpVersion.HTTP_1_1, HttpMethod.POST, "/");
 
-        // Act
-        handler.doPost(request, response);
+        channel.writeInbound(request);
 
-        // Assert
-        verify(response).setStatus(405);
-        verify(response).setContentType("text/plain; charset=UTF-8");
-        assertEquals("Method Not Allowed", stringWriter.toString());
+        FullHttpResponse response = channel.readOutbound();
+
+        assertEquals(HttpResponseStatus.METHOD_NOT_ALLOWED, response.status());
+        assertEquals("text/plain; charset=UTF-8", response.headers().get("Content-Type"));
+        assertEquals("Method Not Allowed", response.content().toString(CharsetUtil.UTF_8));
     }
 }

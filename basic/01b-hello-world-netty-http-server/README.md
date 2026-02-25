@@ -1,14 +1,14 @@
 # Hello World HTTP Server
 
-This is a simple backend mini-project in Java using `com.sun.net.httpserver`. It serves a single GET endpoint that returns a "Hello World" message, demonstrating basic HTTP server implementation, error handling, and logging without external frameworks like Spring or Jakarta EE.
+This is a simple backend mini-project in Java using `Netty`. It serves a single GET endpoint that returns a "Hello World" message, demonstrating basic HTTP server implementation, error handling, and logging without external frameworks like Spring.
 
 ## Features
 
-- **Simple HTTP Server**: Uses Java's built-in `com.sun.net.httpserver`.
+- **Simple HTTP Server**: Uses `Netty` for handling HTTP requests.
 - **GET Endpoint**: Responds with "Hello World" on the root path `/`.
 - **Error Handling**: Returns `405 Method Not Allowed` for non-GET requests.
 - **Logging**: Basic logging of incoming requests and server status.
-- **Testing**: Includes unit tests with JUnit 5 and Mockito, and integration tests using `java.net.http.HttpClient`.
+- **Testing**: Includes unit tests using Netty's `EmbeddedChannel`, and integration tests using `java.net.http.HttpClient`.
 
 ## Requirements
 

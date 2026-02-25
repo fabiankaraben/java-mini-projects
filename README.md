@@ -13,7 +13,9 @@ Java mini-projects, each one a new challenge.
    🔹 This is a simple backend in Java using `com.sun.net.httpserver`, serving a single GET endpoint that returns a "Hello World" message, with basic error handling and logging.  
    📦 **Dependency Manager**: Maven  
    🧪 **Testing**: Unit tests using **JUnit 5**. Integration tests using `java.net.http.HttpClient` to verify the endpoint response.  
-   🔹 [Project directory](basic/01-hello-world-http-server)
+   🔹 [Project directory](basic/01a-hello-world-jetty-http-server)
+   🔹 [Project directory](basic/01b-hello-world-netty-http-server)
+   🔹 [Project directory](basic/01c-hello-world-tomcat-http-server)
 
 2. **Static File Server**  
    🔹 This is a basic backend in Java using `com.sun.net.httpserver`, serving static HTML, CSS, and JS files from a directory.  

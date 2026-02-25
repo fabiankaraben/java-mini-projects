@@ -1,15 +1,16 @@
 package com.fabiankaraben.http;
 
-import com.sun.net.httpserver.HttpExchange;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.ByteArrayOutputStream;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URI;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -19,44 +20,48 @@ import static org.mockito.Mockito.when;
 class HelloHandlerTest {
 
     @Mock
-    private HttpExchange exchange;
+    private HttpServletRequest request;
+
+    @Mock
+    private HttpServletResponse response;
 
     private HelloHandler handler;
-    private ByteArrayOutputStream outputStream;
+    private StringWriter stringWriter;
+    private PrintWriter printWriter;
 
     @BeforeEach
     void setUp() {
         handler = new HelloHandler();
-        outputStream = new ByteArrayOutputStream();
+        stringWriter = new StringWriter();
+        printWriter = new PrintWriter(stringWriter);
     }
 
     @Test
-    void handle_ShouldReturnHelloWorld_WhenMethodIsGet() throws IOException {
+    void doGet_ShouldReturnHelloWorld() throws IOException {
         // Arrange
-        when(exchange.getRequestMethod()).thenReturn("GET");
-        when(exchange.getRequestURI()).thenReturn(URI.create("/"));
-        when(exchange.getResponseBody()).thenReturn(outputStream);
+        when(request.getRequestURI()).thenReturn("/");
+        when(response.getWriter()).thenReturn(printWriter);
 
         // Act
-        handler.handle(exchange);
+        handler.doGet(request, response);
 
         // Assert
-        verify(exchange).sendResponseHeaders(200, "Hello World".length());
-        assertEquals("Hello World", outputStream.toString());
+        verify(response).setContentType("text/plain; charset=UTF-8");
+        assertEquals("Hello World", stringWriter.toString());
     }
 
     @Test
-    void handle_ShouldReturnMethodNotAllowed_WhenMethodIsNotGet() throws IOException {
+    void doPost_ShouldReturnMethodNotAllowed() throws IOException {
         // Arrange
-        when(exchange.getRequestMethod()).thenReturn("POST");
-        when(exchange.getRequestURI()).thenReturn(URI.create("/"));
-        when(exchange.getResponseBody()).thenReturn(outputStream);
+        when(request.getRequestURI()).thenReturn("/");
+        when(response.getWriter()).thenReturn(printWriter);
 
         // Act
-        handler.handle(exchange);
+        handler.doPost(request, response);
 
         // Assert
-        verify(exchange).sendResponseHeaders(405, "Method Not Allowed".length());
-        assertEquals("Method Not Allowed", outputStream.toString());
+        verify(response).setStatus(405);
+        verify(response).setContentType("text/plain; charset=UTF-8");
+        assertEquals("Method Not Allowed", stringWriter.toString());
     }
 }

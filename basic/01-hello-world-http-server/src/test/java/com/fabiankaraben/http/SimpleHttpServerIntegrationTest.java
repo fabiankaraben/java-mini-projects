@@ -19,7 +19,7 @@ class SimpleHttpServerIntegrationTest {
     private static String baseUrl;
 
     @BeforeAll
-    static void setUp() throws IOException {
+    static void setUp() throws Exception {
         server = new SimpleHttpServer();
         server.start();
         int port = server.getPort();
@@ -29,7 +29,11 @@ class SimpleHttpServerIntegrationTest {
 
     @AfterAll
     static void tearDown() {
-        server.stop();
+        try {
+            server.stop();
+        } catch (Exception e) {
+            // Ignore
+        }
     }
 
     @Test

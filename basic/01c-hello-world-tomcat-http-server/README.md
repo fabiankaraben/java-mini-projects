@@ -18,7 +18,7 @@ This is a simple backend mini-project in Java using Embedded Tomcat. It serves a
 ## Project Structure
 
 ```
-basic/01-hello-world-http-server/
+basic/01c-hello-world-tomcat-http-server/
 ├── src/
 │   ├── main/
 │   │   └── java/

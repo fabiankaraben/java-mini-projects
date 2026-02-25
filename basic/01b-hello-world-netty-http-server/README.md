@@ -18,7 +18,7 @@ This is a simple backend mini-project in Java using `Netty`. It serves a single 
 ## Project Structure
 
 ```
-basic/01-hello-world-http-server/
+basic/01b-hello-world-netty-http-server/
 ├── src/
 │   ├── main/
 │   │   └── java/

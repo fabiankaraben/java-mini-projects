@@ -311,6 +311,12 @@ Java mini-projects, each one a new challenge.
     🧪 **Testing**: Unit tests using `CountDownLatch` to verify the task runs multiple times within a short period.  
     🔹 [Project directory](basic/50-basic-cron-job)
 
+51. **Modular Backend with JPMS**  
+    🔹 This is a basic backend in Java utilizing the Java Platform Module System (JPMS) to separate the application into distinct modules with strict encapsulation.  
+    📦 **Dependency Manager**: Maven  
+    🧪 **Testing**: Unit tests for individual modules and integration tests verifying the modular application runs correctly via the module path.  
+    🔹 [Project directory](basic/51-modular-backend-with-jpms)
+
 ## Intermediate
 1. **REST API with SQLite**  
     🔹 This is a backend in Java using **Spring Boot**, using SQLite for data storage, REST APIs with CRUD on users.  
